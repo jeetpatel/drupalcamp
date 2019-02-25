@@ -1,0 +1,5 @@
+entity.pincode_master.add_form:
+  route_name: entity.pincode_master.add_form
+  title: 'Add Pincode master'
+  appears_on:
+    - entity.pincode_master.collection

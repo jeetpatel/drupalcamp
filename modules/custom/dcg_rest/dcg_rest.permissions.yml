@@ -1,0 +1,19 @@
+add pincode master entities:
+  title: 'Create new Pincode master entities'
+
+administer pincode master entities:
+  title: 'Administer Pincode master entities'
+  description: 'Allow to access the administration form to configure Pincode master entities.'
+  restrict access: true
+
+delete pincode master entities:
+  title: 'Delete Pincode master entities'
+
+edit pincode master entities:
+  title: 'Edit Pincode master entities'
+
+view published pincode master entities:
+  title: 'View published Pincode master entities'
+
+view unpublished pincode master entities:
+  title: 'View unpublished Pincode master entities'

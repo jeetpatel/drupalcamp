@@ -1,0 +1,14 @@
+{
+  "name": "drupal/dcg_rest",
+  "type": "drupal-module",
+  "description": "Custom Rest module",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/dcg_rest",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/dcg_rest",
+    "source": "http://cgit.drupalcode.org/dcg_rest"
+  },
+  "require": { }
+}

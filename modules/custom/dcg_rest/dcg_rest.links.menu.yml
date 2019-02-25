@@ -1,0 +1,14 @@
+
+# Pincode master menu items definition
+entity.pincode_master.collection:
+  title: 'Pincode master list'
+  route_name: entity.pincode_master.collection
+  description: 'List Pincode master entities'
+  parent: system.admin_structure
+  weight: 100
+
+pincode_master.admin.structure.settings:
+  title: 'Pincode master settings'
+  description: 'Configure Pincode master entities'
+  route_name: pincode_master.settings
+  parent: system.admin_structure

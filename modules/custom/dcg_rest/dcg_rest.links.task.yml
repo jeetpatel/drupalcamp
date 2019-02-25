@@ -1,0 +1,22 @@
+# Pincode master routing definition
+pincode_master.settings_tab:
+  route_name: pincode_master.settings
+  title: 'Settings'
+  base_route: pincode_master.settings
+
+entity.pincode_master.canonical:
+  route_name: entity.pincode_master.canonical
+  base_route: entity.pincode_master.canonical
+  title: 'View'
+
+entity.pincode_master.edit_form:
+  route_name: entity.pincode_master.edit_form
+  base_route: entity.pincode_master.canonical
+  title: 'Edit'
+
+entity.pincode_master.delete_form:
+  route_name:  entity.pincode_master.delete_form
+  base_route:  entity.pincode_master.canonical
+  title: Delete
+  weight: 10
+

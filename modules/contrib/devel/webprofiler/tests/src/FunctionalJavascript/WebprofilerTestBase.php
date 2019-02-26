@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\webprofiler\FunctionalJavascript;
 
-use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use PHPUnit_Framework_AssertionFailedError;
 
 /**
@@ -10,7 +10,7 @@ use PHPUnit_Framework_AssertionFailedError;
  *
  * @group webprofiler
  */
-abstract class WebprofilerTestBase extends JavascriptTestBase {
+abstract class WebprofilerTestBase extends WebDriverTestBase {
 
   /**
    * Wait until the toolbar is present on page.

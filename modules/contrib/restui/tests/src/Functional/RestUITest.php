@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\restui\Functional;
 
-use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\rest\RestResourceConfigInterface;
 
 /**
@@ -10,7 +10,7 @@ use Drupal\rest\RestResourceConfigInterface;
  *
  * @group restui
  */
-class RestUITest extends JavascriptTestBase {
+class RestUITest extends WebDriverTestBase {
 
   /**
    * {@inheritdoc}

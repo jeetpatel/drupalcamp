@@ -29,12 +29,8 @@ class DefaultPostResourse extends ResourceBase {
   CONST SUCCESS = 'success';
   CONST ALREADY_EXISTS = 'Data already exists.';
   CONST ENTITY_SAVE_ERROR = 'Error in saving entity.';
-  /**
-   * A current user instance.
-   *
-   * @var \Drupal\Core\Session\AccountProxyInterface
-   */
-  protected $currentUser;
+  CONST PINCODE_LENGTH = 6;
+  CONST INVALID_PINCODE = 'Pincode is not valid.';
 
   /**
    * Constructs a new DefaultPostResourse object.
@@ -49,19 +45,14 @@ class DefaultPostResourse extends ResourceBase {
    *   The available serialization formats.
    * @param \Psr\Log\LoggerInterface $logger
    *   A logger instance.
-   * @param \Drupal\Core\Session\AccountProxyInterface $current_user
-   *   A current user instance.
    */
   public function __construct(
     array $configuration,
     $plugin_id,
     $plugin_definition,
     array $serializer_formats,
-    LoggerInterface $logger,
-    AccountProxyInterface $current_user) {
+    LoggerInterface $logger) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
-
-    $this->currentUser = $current_user;
   }
 
   /**
@@ -73,8 +64,7 @@ class DefaultPostResourse extends ResourceBase {
       $plugin_id,
       $plugin_definition,
       $container->getParameter('serializer.formats'),
-      $container->get('logger.factory')->get('dcg_rest'),
-      $container->get('current_user')
+      $container->get('logger.factory')->get('dcg_rest')
     );
   }
 
@@ -91,17 +81,15 @@ class DefaultPostResourse extends ResourceBase {
    *   Throws exception expected.
    */
   public function post($data) {
-    
-    // You must to implement the logic of your REST Resource here.
-    // Use current user after pass authentication to validate access.
-    if (!$this->currentUser->hasPermission('access content')) {
-      throw new AccessDeniedHttpException();
-    }
+
     $response = [];
-    $response['status'] = $this::FAILURE;
+    $response['status'] = self::FAILURE;
     // Check for empty request.
     if (empty($data['pincode']) || empty($data['city']) || empty($data['state'])) {
-      $response['data'] = $this::MISSING_PARAMS;
+      $response['data'] = self::MISSING_PARAMS;
+    }
+    elseif (strlen($data['pincode']) != self::PINCODE_LENGTH || !is_numeric($data['pincode'])) {
+      $response['data'] = self::INVALID_PINCODE;
     }
     else {
       // Check for already exist.
@@ -109,14 +97,14 @@ class DefaultPostResourse extends ResourceBase {
         ->getStorage('pincode_master')
         ->loadByProperties(['pincode' => $data['pincode']]);
       if ($isExist) {
-        $response['data'] = $this::ALREADY_EXISTS;
+        $response['data'] = self::ALREADY_EXISTS;
       }else{
         $isSaved = $this->savePincode($data);
         if ($isSaved) {
-          $response['status'] = $this::SUCCESS;
+          $response['status'] = self::SUCCESS;
         }else{
-          $response['status'] = $this::FAILURE;  
-          $response['data'] = $this::ENTITY_SAVE_ERROR;
+          $response['status'] = self::FAILURE;  
+          $response['data'] = self::ENTITY_SAVE_ERROR;
         }
       }        
     }

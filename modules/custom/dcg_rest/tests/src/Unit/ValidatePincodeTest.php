@@ -31,9 +31,28 @@ class UnitTest extends UnitTestCase {
    * @covers Drupal\dcg_rest\Pincode::getPincode
    */
   public function testGetPincode() {
+    $this->assertEmpty($this->pincode->getPincode());
     $this->pincode->setPincode(302021);
+    $this->assertNotEmpty($this->pincode->getPincode());
     $this->assertNotEquals(302012, $this->pincode->getPincode());
   }
+  
+  /**
+   * @covers Drupal\dcg_rest\Pincode::getSampleArray
+   */  
+  public function testGetSampleArray() {
+      $sampleArray = $this->pincode->getSampleArray();
+      $this->assertArrayHasKey('pincode', $sampleArray);
+  }
+  
+  /**
+   * Function to test class attributes.
+   * 
+   */
+  public function testClassAttributes() {
+    $this->assertClassHasAttribute('pincode', Pincode::class);
+  }
+
   /**
    * Once test method has finished running, whether it succeeded or failed, tearDown() will be invoked.
    * Unset the $pincode object.

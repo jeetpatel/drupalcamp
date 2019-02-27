@@ -19,4 +19,12 @@ class Pincode {
   public function getPincode() {
     return $this->pincode;
   }
+  
+  public function getSampleArray() {
+    return [
+      'pincode' =>'302012',
+      'state' => 'Rajasthan',
+      'city' => 'Jaipur'
+    ];
+  }
 }

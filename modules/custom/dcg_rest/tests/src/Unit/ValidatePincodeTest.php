@@ -11,14 +11,18 @@ use Drupal\Tests\UnitTestCase;
  * @group dcg_rest
  */
 class UnitTest extends UnitTestCase {
+
   protected $pincode;
+
   /**
    * Before a test method is run, setUp() is invoked.
+   *
    * Create new Pincode object.
    */
   public function setUp() {
     $this->pincode = new Pincode();
   }
+
   /**
    * @covers Drupal\dcg_rest\Pincode::setPincode
    */
@@ -27,6 +31,7 @@ class UnitTest extends UnitTestCase {
     $this->pincode->setPincode(302012);
     $this->assertEquals(302012, $this->pincode->getPincode());
   }
+
   /**
    * @covers Drupal\dcg_rest\Pincode::getPincode
    */
@@ -36,18 +41,17 @@ class UnitTest extends UnitTestCase {
     $this->assertNotEmpty($this->pincode->getPincode());
     $this->assertNotEquals(302012, $this->pincode->getPincode());
   }
-  
+
   /**
    * @covers Drupal\dcg_rest\Pincode::getSampleArray
-   */  
+   */
   public function testGetSampleArray() {
-      $sampleArray = $this->pincode->getSampleArray();
-      $this->assertArrayHasKey('pincode', $sampleArray);
+    $sampleArray = $this->pincode->getSampleArray();
+    $this->assertArrayHasKey('pincode', $sampleArray);
   }
-  
+
   /**
    * Function to test class attributes.
-   * 
    */
   public function testClassAttributes() {
     $this->assertClassHasAttribute('pincode', Pincode::class);
@@ -55,9 +59,11 @@ class UnitTest extends UnitTestCase {
 
   /**
    * Once test method has finished running, whether it succeeded or failed, tearDown() will be invoked.
+   *
    * Unset the $pincode object.
    */
   public function tearDown() {
     unset($this->pincode);
   }
+
 }

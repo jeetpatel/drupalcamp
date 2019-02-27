@@ -24,14 +24,14 @@ class ValidatePincodeTest extends KernelTestBase {
    */
   public function setUp() {
     parent::setUp();
-    $container = \Drupal::getContainer();    
+    $container = \Drupal::getContainer();
     $this->serialize = $container->getParameter('serializer.formats');
-    $this->rest_log = $container->get('logger.factory')->get('rest');    
+    $this->rest_log = $container->get('logger.factory')->get('rest');
     $this->installConfig('dcg_rest');
     $this->installEntitySchema('pincode_master');
     // Create PincodeMaster entity.
     $this->createPincodeMaster();
-    }
+  }
 
   /**
    * @covers ::post
@@ -51,7 +51,11 @@ class ValidatePincodeTest extends KernelTestBase {
     $this->assertEquals('fail', $response['status']);
 
     // Wrong pincode.
-    $request_options = ['pincode' => '3020011', 'city' => 'Jaipur', 'state' => 'Rajasthan'];
+    $request_options = [
+      'pincode' => '3020011',
+      'city' => 'Jaipur',
+      'state' => 'Rajasthan'
+    ];
     $response = $apiObject->post($request_options)->getResponseData();
     // Check if expected value is 'fail'.
     $this->assertEquals('fail', $response['status']);
@@ -59,7 +63,11 @@ class ValidatePincodeTest extends KernelTestBase {
     $this->assertSame('fail', $response['status']);
 
     // Correct data.
-    $request_options = ['pincode' => '302001', 'city' => 'Jaipur', 'state' => 'Rajasthan'];
+    $request_options = [
+      'pincode' => '302001',
+      'city' => 'Jaipur',
+      'state' => 'Rajasthan'
+    ];
     $response = $apiObject->post($request_options)->getResponseData();
     // Check if expected value is 'success'.
     $this->assertEquals('success', $response['status']);
@@ -67,15 +75,14 @@ class ValidatePincodeTest extends KernelTestBase {
     $this->assertSame('success', $response['status']);
   }
 
-
   /**
    * Creates PincodeMaster entity entry.
    */
   protected function createPincodeMaster() {
     $pincode_master_entity = PincodeMaster::create([
-          'pincode' => '121212',
-          'city' => 'Gonda',
-          'state' => 'Uttar Pradesh',
+      'pincode' => '121212',
+      'city' => 'Gonda',
+      'state' => 'Uttar Pradesh',
     ]);
     $pincode_master_entity->save();
   }

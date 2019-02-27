@@ -3,7 +3,6 @@
 namespace Drupal\dcg_rest\Plugin\rest\resource;
 
 use Drupal\Core\Session\AccountProxyInterface;
-use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Psr\Log\LoggerInterface;
@@ -22,9 +21,9 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  * )
  */
 class DefaultGetResourse extends ResourceBase {
-  CONST FAILURE = 'fail';
-  CONST SUCCESS = 'success';
-  CONST NOT_EXISTS = 'Data not exists.';
+  const FAILURE = 'fail';
+  const SUCCESS = 'success';
+  const NOT_EXISTS = 'Data not exists.';
   /**
    * A current user instance.
    *
@@ -77,8 +76,8 @@ class DefaultGetResourse extends ResourceBase {
   /**
    * Responds to GET requests.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity object.
+   * @param string $pincode
+   *   The pincode.
    *
    * @return \Drupal\rest\ResourceResponse
    *   The HTTP response object.
@@ -99,12 +98,13 @@ class DefaultGetResourse extends ResourceBase {
     if ($isExist) {
       $city = reset($isExist)->get('city')->value;
       $state = reset($isExist)->get('state')->value;
-      $response['status'] = $this::SUCCESS;
+      $response['status'] = self::SUCCESS;
       $response['data'] = ['state' => $state, 'city' => $city];
-    }else{
-      $response['status'] = $this::FAILURE;
-      $response['data'] = $this::NOT_EXISTS;
-    } 
+    }
+    else {
+      $response['status'] = self::FAILURE;
+      $response['data'] = self::NOT_EXISTS;
+    }
     return new ResourceResponse($response, 200);
   }
 

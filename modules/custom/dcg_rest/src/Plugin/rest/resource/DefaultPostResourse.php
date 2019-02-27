@@ -2,13 +2,10 @@
 
 namespace Drupal\dcg_rest\Plugin\rest\resource;
 
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\Plugin\ResourceBase;
-use Drupal\rest\ResourceResponse;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Drupal\dcg_rest\Entity\PincodeMaster;
 
 /**
@@ -22,15 +19,15 @@ use Drupal\dcg_rest\Entity\PincodeMaster;
  *   }
  * )
  */
-
 class DefaultPostResourse extends ResourceBase {
-  CONST FAILURE = 'fail';
-  CONST MISSING_PARAMS = 'Some of the required fields are missing in request.';
-  CONST SUCCESS = 'success';
-  CONST ALREADY_EXISTS = 'Data already exists.';
-  CONST ENTITY_SAVE_ERROR = 'Error in saving entity.';
-  CONST PINCODE_LENGTH = 6;
-  CONST INVALID_PINCODE = 'Pincode is not valid.';
+
+  const FAILURE = 'fail';
+  const MISSING_PARAMS = 'Some of the required fields are missing in request.';
+  const SUCCESS = 'success';
+  const ALREADY_EXISTS = 'Data already exists.';
+  const ENTITY_SAVE_ERROR = 'Error in saving entity.';
+  const PINCODE_LENGTH = 6;
+  const INVALID_PINCODE = 'Pincode is not valid.';
 
   /**
    * Constructs a new DefaultPostResourse object.
@@ -51,7 +48,8 @@ class DefaultPostResourse extends ResourceBase {
     $plugin_id,
     $plugin_definition,
     array $serializer_formats,
-    LoggerInterface $logger) {
+    LoggerInterface $logger
+    ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
   }
 
@@ -60,18 +58,14 @@ class DefaultPostResourse extends ResourceBase {
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->getParameter('serializer.formats'),
-      $container->get('logger.factory')->get('dcg_rest')
+      $configuration, $plugin_id, $plugin_definition, $container->getParameter('serializer.formats'), $container->get('logger.factory')->get('dcg_rest')
     );
   }
 
   /**
    * Responds to POST requests.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param array $data
    *   The entity object.
    *
    * @return \Drupal\rest\ModifiedResourceResponse
@@ -80,7 +74,7 @@ class DefaultPostResourse extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function post($data) {
+  public function post(array $data) {
 
     $response = [];
     $response['status'] = self::FAILURE;
@@ -98,37 +92,40 @@ class DefaultPostResourse extends ResourceBase {
         ->loadByProperties(['pincode' => $data['pincode']]);
       if ($isExist) {
         $response['data'] = self::ALREADY_EXISTS;
-      }else{
+      }
+      else {
         $isSaved = $this->savePincode($data);
         if ($isSaved) {
           $response['status'] = self::SUCCESS;
-        }else{
-          $response['status'] = self::FAILURE;  
+        }
+        else {
+          $response['status'] = self::FAILURE;
           $response['data'] = self::ENTITY_SAVE_ERROR;
         }
-      }        
+      }
     }
     return new ModifiedResourceResponse(($response), 200);
   }
 
-  /*
+  /**
    * Function to save Pincode Entity.
    */
-  private function savePincode($data){
-      try {
-        $pincode = PincodeMaster::create([
+  private function savePincode($data) {
+    try {
+      $pincode = PincodeMaster::create([
         // The pincode_master entity bundle.
-          'pincode' => $data['pincode'],
-          'created' => REQUEST_TIME,
-          'changed' => REQUEST_TIME,
-          'city' => $data['city'],
-          'state' => $data['state'],
-        ]);
-        $pincode->save();
-        return TRUE;
-        }
-        catch (\Exception $e) {
-          return FALSE;
-        } 
+        'pincode' => $data['pincode'],
+        'created' => REQUEST_TIME,
+        'changed' => REQUEST_TIME,
+        'city' => $data['city'],
+        'state' => $data['state'],
+      ]);
+      $pincode->save();
+      return TRUE;
+    }
+    catch (\Exception $e) {
+      return FALSE;
+    }
   }
+
 }

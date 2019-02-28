@@ -1,1 +1,5 @@
-/nbproject/private/
+modules/contrib/devel/devel_generate/nbproject/
+vendor/symfony/serializer/nbproject/
+modules/custom/dcg_rest/nbproject/
+modules/*/*/nbproject/
+nbproject/

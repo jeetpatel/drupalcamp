@@ -52,7 +52,7 @@ class SavePincodeTest extends KernelTestBase {
     // This checks value 'fail' in $response array.
     $this->assertContains('fail', $response);
     // Opposite of assertContains.
-    $this->assertNotContains('pass', $response);
+    $this->assertNotContains('success', $response);
     // Check if expected value is 'fail' in string.
     $this->assertEquals('fail', $response['status']);
 

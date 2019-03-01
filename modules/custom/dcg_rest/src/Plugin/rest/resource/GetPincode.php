@@ -92,12 +92,12 @@ class GetPincode extends ResourceBase {
       throw new AccessDeniedHttpException();
     }
     $response = [];
-    $isExist = \Drupal::entityTypeManager()
+    $pincodeEntity = \Drupal::entityTypeManager()
       ->getStorage('pincode_master')
-      ->loadByProperties(['pincode' => $pincode]);
-    if ($isExist) {
-      $city = reset($isExist)->get('city')->value;
-      $state = reset($isExist)->get('state')->value;
+      ->loadByProperties(['pincode' => trim($pincode)]);
+    if ($pincodeEntity) {
+      $city = reset($pincodeEntity)->get('city')->value;
+      $state = reset($pincodeEntity)->get('state')->value;
       $response['status'] = self::SUCCESS;
       $response['data'] = ['state' => $state, 'city' => $city];
     }

@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\dcg_rest\Entity\PincodeMaster;
 
 /**
- * Provides a resource to save Pincode data in entity.
+ * Provides a resource to save PinCode data in entity.
  *
  * @RestResource(
  *   id = "dcg_rest_save_pincode",
@@ -75,7 +75,7 @@ class SavePincode extends ResourceBase {
    *   Throws exception expected.
    */
   public function post(array $data) {
-
+    //echo '<pre>Data:'; print_r($data); echo '</pre>';
     $response = [];
     $response['status'] = self::FAILURE;
     // Check for empty request.
@@ -108,7 +108,7 @@ class SavePincode extends ResourceBase {
   }
 
   /**
-   * Function to save Pincode Entity.
+   * Function to save PinCode Entity.
    */
   private function savePincode($data) {
     try {

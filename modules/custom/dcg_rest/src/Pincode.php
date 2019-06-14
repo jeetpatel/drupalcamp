@@ -46,7 +46,7 @@ class Pincode {
    *   Return bool value.
    */
   public function validatePincode() {
-    if (strlen($this->pincode) != self::PINCODE_LENGTH || !is_numeric($this->pincode)) {
+    if (empty($this->pincode) || strlen($this->pincode) != self::PINCODE_LENGTH || !is_numeric($this->pincode)) {
       return FALSE;
     }
     return TRUE;

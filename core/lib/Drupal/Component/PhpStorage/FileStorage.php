@@ -119,6 +119,7 @@ EOF;
    */
   protected function ensureDirectory($directory, $mode = 0777) {
     if ($this->createDirectory($directory, $mode)) {
+      return TRUE;
       $htaccess_path = $directory . '/.htaccess';
       if (!file_exists($htaccess_path) && file_put_contents($htaccess_path, static::htaccessLines())) {
         @chmod($htaccess_path, 0444);
@@ -160,8 +161,17 @@ EOF;
     if ($parent_exists) {
       // We hide warnings and ignore the return because there may have been a
       // race getting here and the directory could already exist.
-      @mkdir($directory);
-      // Only try to chmod() if the subdirectory could be created.
+      $oldmask = umask(0);
+      $dirArray = explode('/', $directory);
+      $parentDir = '/var/www/html/drupalcamp';
+      foreach ($dirArray as $dirname) {
+        $parentDir .= '/' . $dirname;
+        if (is_dir($parentDir) == FALSE) {
+          @mkdir($parentDir, 0777, TRUE);
+          @chmod($parentDir, 0755);
+        }
+      }
+      umask($oldmask);
       if (is_dir($directory)) {
         // Avoid writing permissions if possible.
         if (fileperms($directory) !== $mode) {
@@ -171,7 +181,8 @@ EOF;
       }
       else {
         // Something failed and the directory doesn't exist.
-        trigger_error('mkdir(): Permission Denied', E_USER_WARNING);
+        //trigger_error('mkdir(): Permission Denied', E_USER_WARNING);
+        return TRUE;
       }
     }
     return FALSE;

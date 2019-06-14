@@ -2,10 +2,8 @@
 
 namespace Drupal\Tests\dcg_rest\Functional;
 
-use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\FunctionalJavascriptTests\DrupalSelenium2Driver;
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
 /**
  * Simple test to ensure that main page loads with module enabled.
@@ -17,7 +15,7 @@ class LoadTest extends BrowserTestBase {
   protected $minkDefaultDriverArgs = [
     'chrome',
     NULL,
-    "http://localhost:4445/wd/hub",
+    "http://localhost:4444/wd/hub",
   ];
 
   /**
@@ -51,7 +49,7 @@ class LoadTest extends BrowserTestBase {
     $this->getSession()->wait(1000);
     $this->drupalGet('admin/reports/status');
     $this->getSession()->wait(1000);
-    $assert_session->pageTextNotContains('/GENERAL SYSTEM INFORMATION/');
+    $assert_session->pageTextContains('GENERAL SYSTEM INFORMATION');
     $this->getSession()->wait(1000);
   }
 

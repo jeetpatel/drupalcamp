@@ -1,4 +1,4 @@
-name: 'DCG Rest'
+name: 'Drupal Camp Rest for Test Cases'
 type: module
 description: 'Custom Rest module'
 core: 8.x

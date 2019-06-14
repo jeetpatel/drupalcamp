@@ -8,7 +8,7 @@ use Drupal\Tests\UnitTestCase;
 /**
  * Simple tests to ensure that asserts pass.
  *
- * @group dcg_rest
+ * @group dcg_rest_pincode_unit
  */
 class PincodeTest extends UnitTestCase {
 
@@ -80,7 +80,9 @@ class PincodeTest extends UnitTestCase {
   }
 
   /**
-   * Once test method has finished running, whether it succeeded or failed, tearDown() will be invoked.
+   * Once test method has finished running, whether it succeeded or failed.
+   *
+   * TearDown() will be invoked.
    *
    * Unset the $pincode object.
    */

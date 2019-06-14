@@ -44,12 +44,12 @@ class SavePincode extends ResourceBase {
    *   A logger instance.
    */
   public function __construct(
-    array $configuration,
+  array $configuration,
     $plugin_id,
     $plugin_definition,
     array $serializer_formats,
     LoggerInterface $logger
-    ) {
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
   }
 
@@ -75,7 +75,6 @@ class SavePincode extends ResourceBase {
    *   Throws exception expected.
    */
   public function post(array $data) {
-    //echo '<pre>Data:'; print_r($data); echo '</pre>';
     $response = [];
     $response['status'] = self::FAILURE;
     // Check for empty request.
@@ -113,7 +112,6 @@ class SavePincode extends ResourceBase {
   private function savePincode($data) {
     try {
       $pincode = PincodeMaster::create([
-        // The pincode_master entity bundle.
         'pincode' => $data['pincode'],
         'created' => REQUEST_TIME,
         'changed' => REQUEST_TIME,

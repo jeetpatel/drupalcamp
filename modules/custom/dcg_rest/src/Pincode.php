@@ -62,7 +62,7 @@ class Pincode {
     return [
       'pincode' => '302012',
       'state' => 'Rajasthan',
-      'city' => 'Jaipur'
+      'city' => 'Jaipur',
     ];
   }
 

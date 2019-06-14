@@ -9,7 +9,7 @@ use Drupal\dcg_rest\Entity\PincodeMaster;
 /**
  * Test SavePincode API logic.
  *
- * @group dcg_pincode
+ * @group dcg_pincode_kernal
  * @coversDefaultClass \Drupal\dcg_rest\Plugin\rest\resource\SavePincode
  */
 class SavePincodeTest extends KernelTestBase {
@@ -60,7 +60,7 @@ class SavePincodeTest extends KernelTestBase {
     $request_options = [
       'pincode' => '3020011',
       'city' => 'Jaipur',
-      'state' => 'Rajasthan'
+      'state' => 'Rajasthan',
     ];
     $response = $apiObject->post($request_options)->getResponseData();
     // Check if expected value is 'fail'.
@@ -84,7 +84,7 @@ class SavePincodeTest extends KernelTestBase {
     $request_options = [
       'pincode' => '302001',
       'city' => 'Jaipur',
-      'state' => 'Rajasthan'
+      'state' => 'Rajasthan',
     ];
     $response = $apiObject->post($request_options)->getResponseData();
     // Check if expected value is 'success'.

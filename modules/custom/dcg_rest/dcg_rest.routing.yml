@@ -1,0 +1,8 @@
+
+dcg_rest.default_controller_hello:
+  path: '/dcg_rest/hello/{name}'
+  defaults:
+    _controller: '\Drupal\dcg_rest\Controller\DefaultController::hello'
+    _title: 'Test controller'
+  requirements:
+    _permission: 'access content'

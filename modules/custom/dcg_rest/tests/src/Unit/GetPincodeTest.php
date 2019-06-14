@@ -27,14 +27,14 @@ class GetPincodeTest extends UnitTestCase {
    * Create new GuzzleHttp client object.
    */
   public function setUp() {
-    $this->http = new Client(['base_uri' => 'http://dcg19.com']);
+    $this->http = new Client(['base_uri' => 'http://localdrupalcamp.com']);
   }
 
   /**
    * Test Case to test /getpincode/{pincode} API.
    */
   public function testGetPincode() {
-    $response = $this->http->request('GET', '/getpincode/201301');
+    $response = $this->http->request('GET', '/getpincode/302001');
     // Test Header response status 200.
     $this->assertEquals(200, $response->getStatusCode());
 
@@ -42,13 +42,16 @@ class GetPincodeTest extends UnitTestCase {
     $contentType = $response->getHeaders()["Content-Type"][0];
     $this->assertEquals("application/json", $contentType);
 
-    // Test city have Noida value.
-    $cityObj = json_decode($response->getBody())->{"data"}->city;
-    $this->assertRegexp('/Noida/', $cityObj);
+    // Test city have Jaipur value.
+    $city = 'test';
+    $responseBody = json_decode($response->getBody());
+    if ($responseBody && (isset($responseBody->data->city))) {
+      $city = $responseBody->data->city;
+    }
+    $this->assertRegexp('/Jaipur/', $city);
 
     // Test Header response status have success value.
-    $statusObj = json_decode($response->getBody())->{"status"};
-    $this->assertRegexp('/success/', $statusObj);
+    $this->assertRegexp('/success/', $responseBody->status);
   }
 
   /**

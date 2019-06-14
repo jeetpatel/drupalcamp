@@ -27,7 +27,7 @@ class SavePincodeTest extends UnitTestCase {
    * Create new GuzzleHttp client object.
    */
   public function setUp() {
-    $this->http = new Client(['base_uri' => 'http://dcg19.com']);
+    $this->http = new Client(['base_uri' => 'http://localdrupalcamp.com']);
   }
 
   /**
@@ -35,9 +35,9 @@ class SavePincodeTest extends UnitTestCase {
    */
   public function testGetPincode() {
     $params = [
-      'pincode' => '201309',
-      'city' => 'Ghaziabad',
-      'state' => 'Uttar Pradesh',
+      'pincode' => '302001',
+      'city' => 'Jaipur',
+      'state' => 'Rajasthan',
     ];
     $response = $this->http->request('POST', '/save-pincode-data', [
       'headers' => [

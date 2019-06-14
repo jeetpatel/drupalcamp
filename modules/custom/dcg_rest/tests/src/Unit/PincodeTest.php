@@ -13,7 +13,7 @@ use Drupal\Tests\UnitTestCase;
 class PincodeTest extends UnitTestCase {
 
   /**
-   * Pincode variable.
+   * PinCode variable.
    *
    * @var pincode
    */
@@ -22,7 +22,7 @@ class PincodeTest extends UnitTestCase {
   /**
    * Before every test method is run, setUp() is invoked.
    *
-   * Create new Pincode object.
+   * Create new PinCode object.
    */
   public function setUp() {
     $this->pincode = new Pincode();
@@ -49,6 +49,7 @@ class PincodeTest extends UnitTestCase {
     $this->pincode->setPincode(302021);
     $this->assertNotEmpty($this->pincode->getPincode());
     $this->assertNotEquals(302012, $this->pincode->getPincode());
+    $this->assertEquals(302021, $this->pincode->getPincode());
   }
 
   /**

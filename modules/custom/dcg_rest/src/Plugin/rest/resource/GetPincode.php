@@ -98,12 +98,19 @@ class GetPincode extends ResourceBase {
     if ($pincodeEntity) {
       $city = reset($pincodeEntity)->get('city')->value;
       $state = reset($pincodeEntity)->get('state')->value;
-      $response['status'] = self::SUCCESS;
-      $response['data'] = ['state' => $state, 'city' => $city];
+      $response = [
+        'status' => self::SUCCESS,
+        'data' => [
+          'state' => $state,
+          'city' => $city,
+        ],
+      ];
     }
     else {
-      $response['status'] = self::FAILURE;
-      $response['data'] = self::NOT_EXISTS;
+      $response = [
+        'status' => self::FAILURE,
+        'data' => self::NOT_EXISTS,
+      ];
     }
     return new ResourceResponse($response, 200);
   }

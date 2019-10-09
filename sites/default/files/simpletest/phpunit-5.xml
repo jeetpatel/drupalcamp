@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Drupal\Tests\dcg_rest\Functional\LoadTest" file="/var/www/html/drupalcamp/modules/custom/dcg_rest/tests/src/Functional/LoadTest.php" tests="1" assertions="5" errors="1" failures="0" skipped="0" time="19.273536">
+    <testcase name="testLoad" class="Drupal\Tests\dcg_rest\Functional\LoadTest" classname="Drupal.Tests.dcg_rest.Functional.LoadTest" file="/var/www/html/drupalcamp/modules/custom/dcg_rest/tests/src/Functional/LoadTest.php" line="50" assertions="5" time="19.273536">
+      <error type="Behat\Mink\Exception\UnsupportedDriverActionException">Drupal\Tests\dcg_rest\Functional\LoadTest::testLoad
+Behat\Mink\Exception\UnsupportedDriverActionException: Response headers are not available from Drupal\FunctionalJavascriptTests\DrupalSelenium2Driver
+
+/var/www/html/drupalcamp/vendor/behat/mink/src/Driver/CoreDriver.php:289
+/var/www/html/drupalcamp/vendor/behat/mink/src/Session.php:180
+/var/www/html/drupalcamp/core/tests/Drupal/Tests/BrowserHtmlDebugTrait.php:96
+/var/www/html/drupalcamp/core/tests/Drupal/Tests/UiHelperTrait.php:345
+/var/www/html/drupalcamp/core/tests/Drupal/Tests/UiHelperTrait.php:246
+/var/www/html/drupalcamp/modules/custom/dcg_rest/tests/src/Functional/LoadTest.php:43
+</error>
+    </testcase>
+  </testsuite>
+</testsuites>

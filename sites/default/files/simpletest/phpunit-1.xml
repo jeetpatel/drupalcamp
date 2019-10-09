@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Drupal\Tests\dcg_rest\Functional\LoadTest" file="/var/www/html/drupalrest/modules/custom/dcg_rest/tests/src/Functional/LoadTest.php" tests="1" assertions="1" errors="1" failures="0" skipped="0" time="7.791405">
+    <testcase name="testLoad" class="Drupal\Tests\dcg_rest\Functional\LoadTest" classname="Drupal.Tests.dcg_rest.Functional.LoadTest" file="/var/www/html/drupalrest/modules/custom/dcg_rest/tests/src/Functional/LoadTest.php" line="44" assertions="1" time="7.791405">
+      <error type="Behat\Mink\Exception\DriverException">Drupal\Tests\dcg_rest\Functional\LoadTest::testLoad
+Behat\Mink\Exception\DriverException: Could not open connection: Curl error thrown for http POST to http://localhost:4444/wd/hub/session with params: {"desiredCapabilities":{"browserName":"chrome","version":"9","platform":"ANY","browserVersion":"9","browser":"firefox","name":"Behat Test","deviceOrientation":"portrait","deviceType":"tablet","selenium-version":"2.31.0"}}
+
+The requested URL returned error: 500 Server Error
+
+/var/www/html/drupalrest/vendor/behat/mink-selenium2-driver/src/Selenium2Driver.php:310
+/var/www/html/drupalrest/vendor/behat/mink/src/Session.php:70
+/var/www/html/drupalrest/vendor/behat/mink/src/Session.php:145
+/var/www/html/drupalrest/core/tests/Drupal/Tests/BrowserTestBase.php:276
+/var/www/html/drupalrest/core/tests/Drupal/Tests/BrowserTestBase.php:246
+/var/www/html/drupalrest/core/tests/Drupal/Tests/BrowserTestBase.php:401
+/var/www/html/drupalrest/modules/custom/dcg_rest/tests/src/Functional/LoadTest.php:37
+</error>
+    </testcase>
+  </testsuite>
+</testsuites>

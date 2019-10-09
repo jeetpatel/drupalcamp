@@ -769,13 +769,14 @@ $settings['entity_update_batch_size'] = 50;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => 'dcg',
+  'database' => 'drupalrest',
   'username' => 'root',
-  'password' => 'password',
+  'password' => 'root',
   'prefix' => '',
   'host' => 'localhost',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
+$conf['maintenance_mode'] = 0;
 $config_directories['sync'] = 'sites/default/files/config_Nu2B3s7cmcoWUDOCvDql0Lfrr4BdvvA_QCl908zCdwadVz7MI1-3Dat832jiMBjZ8TE543s29g/sync';

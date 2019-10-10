@@ -6,3 +6,11 @@ dcg_rest.default_controller_hello:
     _title: 'Test controller'
   requirements:
     _permission: 'access content'
+
+dcg_rest.message:
+  path: '/dcg-rest/message'
+  defaults:
+    _title: 'Message'
+    _form: 'Drupal\dcg_rest\Form\MessageForm'
+  requirements:
+    _permission: 'access content'

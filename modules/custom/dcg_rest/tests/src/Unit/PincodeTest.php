@@ -48,7 +48,7 @@ class PincodeTest extends UnitTestCase {
     $this->assertEmpty($this->pincode->getPincode());
     $this->pincode->setPincode(302021);
     $this->assertNotEmpty($this->pincode->getPincode());
-    $this->assertNotEquals(302012, $this->pincode->getPincode());
+    $this->assertNotEquals(110096, $this->pincode->getPincode());
     $this->assertEquals(302021, $this->pincode->getPincode());
   }
 

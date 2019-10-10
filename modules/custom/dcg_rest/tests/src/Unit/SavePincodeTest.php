@@ -33,7 +33,7 @@ class SavePincodeTest extends UnitTestCase {
   /**
    * Test Case to test /save-pincode-data API.
    */
-  public function testGetPincode() {
+  public function testSavePincode() {
     $params = [
       'pincode' => '302001',
       'city' => 'Jaipur',

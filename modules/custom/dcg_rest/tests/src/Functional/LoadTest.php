@@ -15,7 +15,7 @@ class LoadTest extends BrowserTestBase {
   protected $minkDefaultDriverArgs = [
     'chrome',
     NULL,
-    "http://localhost:4444/wd/hub",
+    "http://localhost:9515/wd/hub",
   ];
 
   /**

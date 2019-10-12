@@ -4,6 +4,7 @@ namespace Drupal\dcg_rest\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\dcg_rest\Helper\LambdaHelper;
 
 /**
  * Provides a Drupal Camp Rest for Test Cases form.
@@ -21,7 +22,7 @@ class MessageForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-
+    echo "ENV:" . getenv('ENV');
     $form['message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Message'),
@@ -53,7 +54,9 @@ class MessageForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->messenger()->addStatus($this->t('The message has been sent.'));
-    $form_state->setRedirect('<front>');
+    $lambdaHelper = LambdaHelper::instance();
+    $lambdaHelper->pushMessage($form_state->getValue('message'));
+    $form_state->setRedirect('dcg_rest.message');
   }
 
 }

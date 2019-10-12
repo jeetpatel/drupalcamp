@@ -1,16 +1,17 @@
 <?php
 
-namespace Drupal\Tests\dcg_rest\Unit;
+namespace Drupal\Tests\dcg_rest\Kernel;
 
-use Drupal\Tests\UnitTestCase;
+use Drupal\KernelTests\KernelTestBase;
 use GuzzleHttp\Client;
 
 /**
- * Get PinCode test.
+ * Test SavePincode API logic.
  *
- * @group dcg_rest_save_pincode
+ * @group dcg_rest_save_pincodes
+ * @coversDefaultClass \Drupal\dcg_rest\Plugin\rest\resource\SavePincode
  */
-class SavePincodeTest extends UnitTestCase {
+class SavePincodesTest extends KernelTestBase {
 
   private $http;
 
@@ -27,6 +28,7 @@ class SavePincodeTest extends UnitTestCase {
    * Create new GuzzleHttp client object.
    */
   public function setUp() {
+    parent::setUp();
     $this->http = new Client(['base_uri' => 'http://localdrupalcamp.com']);
   }
 
@@ -35,9 +37,9 @@ class SavePincodeTest extends UnitTestCase {
    */
   public function testSavePincode() {
     $params = [
-      'pincode' => '302001',
-      'city' => 'Jaipur',
-      'state' => 'Rajasthan',
+      'pincode' => '110005',
+      'city' => 'Central Delhi 3',
+      'state' => 'Delhi',
     ];
     $response = $this->http->request('POST', '/save-pincode-data', [
       'headers' => [
@@ -55,13 +57,6 @@ class SavePincodeTest extends UnitTestCase {
     // Test Header response status have 'success' value.
     $statusObj = json_decode($response->getBody())->{"status"};
     $this->assertRegexp('/success/', $statusObj);
-  }
-
-  /**
-   * Clear created object on setUp().
-   */
-  public function tearDown() {
-    $this->http = NULL;
   }
 
 }

@@ -49,12 +49,16 @@ class LambdaHelper {
         $client = LambdaClient::factory(
           [
             'version' => 'latest',
-            'region' => 'ap-south-1',
+            'region' => 'us-east-2',
+            'credentials' => [
+              'key' => getenv('AWS_KEY'),
+              'secret' => getenv('AWS_SECRET'),
+            ],
           ]
         );
         // If success.
         if ($client && $client->invoke([
-          'FunctionName' => 'function:' . getenv('LAMBDA_ACCOUNT_RETRY'),
+          'FunctionName' => 'function:drupalcamp_pushmessage',
           'Payload' => json_encode(['message' => $message]),
         ])) {
           return TRUE;

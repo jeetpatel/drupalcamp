@@ -37,7 +37,7 @@ class SavePincodesTest extends KernelTestBase {
    */
   public function testSavePincode() {
     $params = [
-      'pincode' => '110005',
+      'pincode' => '110008',
       'city' => 'Central Delhi 3',
       'state' => 'Delhi',
     ];

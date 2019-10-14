@@ -34,7 +34,7 @@ class GetPincodeTest extends UnitTestCase {
    * Test Case to test /getpincode/{pincode} API.
    */
   public function testGetPincode() {
-    $response = $this->http->request('GET', '/getpincode/302001');
+    $response = $this->http->request('GET', '/getpincode/302009');
     // Test Header response status 200.
     $this->assertEquals(200, $response->getStatusCode());
 

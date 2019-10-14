@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\dcg_rest\Helper\LambdaHelper;
 
 /**
- * Provides a Drupal Camp Rest for Test Cases form.
+ * Push message via AWS Lambda function.
  */
 class MessageForm extends FormBase {
 
@@ -22,7 +22,6 @@ class MessageForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    echo "ENV:" . getenv('ENV');
     $form['message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Message'),
